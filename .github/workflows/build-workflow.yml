@@ -40,7 +40,7 @@ jobs:
       - name: Lint
         run: npm run lint
   Deploy:
-    needs: Test
+    needs: [Test, Lint ]
     runs-on: ubuntu-latest
     steps:
       - name: Get the Code from Github Repo
