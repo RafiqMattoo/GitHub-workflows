@@ -1,0 +1,14 @@
+name: Github Workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greeting Message
+        run: echo "Welcome to github"
+      - name: Seeof Message
+        run: echo "Bye from github"
+        
+        
+      
+  
