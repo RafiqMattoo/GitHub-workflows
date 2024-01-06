@@ -26,7 +26,6 @@ jobs:
       - name: Lint
         run: npm run lint
   Test :
-    needs: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Run Linting
