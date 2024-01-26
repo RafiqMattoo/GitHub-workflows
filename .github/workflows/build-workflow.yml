@@ -20,7 +20,7 @@ jobs:
       - name: Install Node JS Version
         uses : actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Install Dependencies
         run: npm ci
       - name: Lint
@@ -34,7 +34,7 @@ jobs:
       - name: Install Node JS Version
         uses : actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Install Dependencies
         run: npm ci
       - name: Lint
@@ -48,7 +48,7 @@ jobs:
       - name: Install Node JS Version
         uses : actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Install Dependencies
         run: npm ci
       - name: Build Code
@@ -64,7 +64,12 @@ jobs:
                 output-build-files
                 package.json
                 readme.md
-                
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.os }}-${{ matrix.version }}
+          path: my-binary
+
     
 
 
