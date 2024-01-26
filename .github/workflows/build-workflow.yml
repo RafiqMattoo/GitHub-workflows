@@ -55,6 +55,16 @@ jobs:
         run: npm run build
       - name: Github Context Data  
         run: echo "${{ toJSON(github) }}"
+      
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with: 
+          name: output-build
+          path: |
+                output-build-files
+                package.json
+                readme.md
+                
     
 
 
