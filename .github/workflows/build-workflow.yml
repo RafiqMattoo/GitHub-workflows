@@ -39,7 +39,7 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-  Deploy:
+  Deploy :
     needs: [Test, Lint ]
     runs-on: ubuntu-latest
     steps:
@@ -53,6 +53,8 @@ jobs:
         run: npm ci
       - name: Build Code
         run: npm run build
+      - name: Publish File Name
+        run: find dist/assets/*.js -type f -execdir echo '{}' ';'
       - name: Github Context Data  
         run: echo "${{ toJSON(github) }}"      
       - name: Upload Artifacts
@@ -63,7 +65,7 @@ jobs:
                 dist
                 package.json
                 README.md
-  Deployment:
+  Deployment :
     needs: [Test, Lint, Deploy ]
     runs-on: ubuntu-latest
     steps:
