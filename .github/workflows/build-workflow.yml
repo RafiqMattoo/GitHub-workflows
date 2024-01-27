@@ -42,6 +42,8 @@ jobs:
   Deploy :
     needs: [Test, Lint ]
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file}}
     steps:
       - name: Get the Code from Github Repo
         uses: actions/checkout@v4
@@ -54,7 +56,8 @@ jobs:
       - name: Build Code
         run: npm run build
       - name: Publish File Name
-        run: find dist/assets/*.js -type f -execdir echo '{}' ';'
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
       - name: Github Context Data  
         run: echo "${{ toJSON(github) }}"      
       - name: Upload Artifacts
@@ -74,8 +77,8 @@ jobs:
         with:
           name: output-build
           run: ls
-      - name: Deploying Code
-        run: echo Deployment InProgress
+      - name: Filename
+        run: echo ${{ needs.Deploy.outputs.script-file }}
 
 
 
