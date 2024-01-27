@@ -63,11 +63,28 @@ jobs:
                 dist
                 package.json
                 README.md
-      # - name: Upload
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: binary-${{ matrix.os }}-${{ matrix.version }}
-      #     path: my-binary
+  Deployment:
+    needs: [Test, Lint, Deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: output-build
+          run: ls
+      - name: Deploying Code
+        run: echo Deployment InProgress
+
+
+
+
+
+
+
+
+
+
+
 
     
 
@@ -75,3 +92,4 @@ jobs:
       
       
   
+          
